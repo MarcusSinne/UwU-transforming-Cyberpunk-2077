@@ -144,4 +144,67 @@ The arguments used here are:
 > **Note:** My screenshot shows WolvenKit's long-path warning. The extraction still completed, but a short project path or Windows long-path support is recommended.
 
 
+## 2. Make the CR2W files readable
+
+The extracted `.json` files are still binary CR2W files. Python cannot read them normally yet, so I used WolvenKit to turn them into readable JSON.
+
+I tested one file first.
+
+The output folder needs to exist:
+
+```powershell
+New-Item -ItemType Directory -Force "$Project\raw\example" | Out-Null
+```
+
+Then I serialized the file:
+
+```powershell
+& $WolvenKit convert serialize `
+  "$Project\source\base\base\localization\en-us\subtitles\open_world\vendors\wat_kab_stylist_01.json" `
+  -o "$Project\raw\example" `
+  -v Minimal
+```
+
+WolvenKit turned this:
+
+```text
+wat_kab_stylist_01.json
+```
+
+into this:
+
+```text
+wat_kab_stylist_01.json.json
+```
+
+Now it is readable. Finally.
+
+Yes, `.json.json`. Very normal naming. Nothing cursed here. Do not worry.
+
+The text entries are stored under:
+
+```text
+Data\RootChunk\root\Data\entries
+```
+
+For this subtitle file, each entry contains:
+
+```text
+$type
+femaleVariant
+maleVariant
+stringId
+```
+
+After this test worked, I used the same process for all base-game and Phantom Liberty localization files.
+
+![WolvenKit serialize help in my PowerShell console](assets/ps-wolvenkit-serialize-help.png)
+
+CLI help from my PowerShell console; shortened so it fits.
+
+**Source:** [WolvenKit CLI command list](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#convert)
+
+
+
+
 
