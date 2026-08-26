@@ -2,7 +2,20 @@
 
 Nope I did not paste onscreen to chat gee pee twee that's like committing linguistic homicide.
 
-I extracted the compiled localization resources using WolvenKit + power of Python to make a text replacer, rebuilt them, then Boom I become cat boy Nyaaa~! No prose was rewritten only replace. The process is deterministic. Same source + same seed = same UwU transformation every time.
+I extracted the compiled localization resources using WolvenKit + power of Python to make a text replacer, rebuilt them, then Boom I become cat boy Nyaaa~! Python rules changed words and added catboy bits from fixed lists. The process is deterministic. Same source + same seed = same UwU transformation every time.
+
+
+## Contents
+ 
+1. [Get the English localization resources](#1-get-the-english-localization-resources)
+2. [Make the CR2W files readable](#2-make-the-cr2w-files-readable)
+3. [Find the actual text](#3-find-the-actual-text)
+4. [Apply the UwU rules](#4-apply-the-uwu-rules)
+5. [Turn the edited JSON back into CR2W](#5-turn-the-edited-json-back-into-cr2w)
+6. [Check that WolvenKit did not eat anything](#6-check-that-wolvenkit-did-not-eat-anything)
+7. [Pack the mod archives](#7-pack-the-mod-archives)
+8. [Test the damn thing](#8-test-the-damn-thing)
+9. [Code](#code)
 
 
 ## What this process changes
@@ -530,3 +543,10 @@ Pass means the text is transformed without:
 - unusable menus
 
 Then remove both mod archives and launch the same save.
+
+## Code
+ 
+- [UwU rules](../src/maximum_meow/transformer.py)
+- [Localization file handling](../src/maximum_meow/resource.py)
+- [Build scripts](../scripts)
+- [Synthetic tests](../tests)
