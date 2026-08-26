@@ -1,0 +1,25 @@
+# Extracted game files
+/source/
+/raw/
+*.json.json
+*.archive
+
+# Build output
+/build/
+/dist/
+/reports/
+/logs/
+
+# Python junk
+/.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Local tools
+/vendor/
+
+# Secrets
+.env
+.env.*
+!.env.example
