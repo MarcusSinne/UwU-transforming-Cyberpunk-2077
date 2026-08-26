@@ -331,3 +331,52 @@ numbers
 
 If those any of those got touched, the game might start having seizure.
 
+
+## 5. Turn the edited JSON back into CR2W
+
+After Python finishes UwUsified, the `.json.json` file needs to become a CR2W resource again, so the game can actually read it.
+
+I used WolvenKit's `convert deserialize` command:
+
+```powershell
+& $WolvenKit convert deserialize `
+  "$Project\raw\example\wat_kab_stylist_01.json.json" `
+  -v Minimal
+```
+
+WolvenKit turned this:
+
+```text
+wat_kab_stylist_01.json.json
+```
+
+back into this:
+
+```text
+wat_kab_stylist_01.json
+```
+
+WolvenKit reported:
+
+```text
+Found 1 files to process.
+Imported wat_kab_stylist_01.json.json
+Converted wat_kab_stylist_01.json.json to CR2W
+```
+
+Checked the rebuilt file header. It should begin with:
+
+```text
+CR2W
+```
+
+So it is a compiled game resource again.
+
+I run this inside the build folder and so should you. It does not overwrite the extracted source files or anything inside the game folder. (don't blame me if any of your game file got overwritten, I warned you multiple times at this point.)
+
+![WolvenKit deserialize help in my PowerShell console](assets/ps-wolvenkit-deserialize-help.png)
+
+CLI help from my PowerShell console; shortened so it fits.
+
+**Source:** [WolvenKit CLI — Convert](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#convert)
+
