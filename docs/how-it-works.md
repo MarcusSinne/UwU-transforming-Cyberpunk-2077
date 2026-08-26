@@ -506,14 +506,10 @@ JSON readback:       3802 / 3802
 Base archive paths:  3086 / 3086
 Phantom Liberty:      716 / 716
 
-I built everything twice from clean folders too. Both runs made identical JSON, CR2W files, archives, and final ZIP contents.
+I also built it twice from clean folders. Both builds were identical.
 
-Deterministic cat crime confirmed.
-
-### What automation cannot prove
-Python cannot launch Cyberpunk and look at the screen. That part needs a human with eyeballs.
-
-The in-game check covers:
+### In-game test
+Automation cannot check what actually appears in-game, so I still need to check:
 
 - main and settings menus
 - HUD and input icons
@@ -531,3 +527,5 @@ Pass means the text is transformed without:
 - changed numbers
 - broken input icons
 - unusable menus
+
+Then remove both mod archives and launch the same save.
