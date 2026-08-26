@@ -178,11 +178,7 @@ def production_readme(
     ep1_path = f"archive/pc/mod/{production_archive_name('ep1')}"
     return f"""Ultimate UwU Meowification Nyaa {version}
 
-STATUS
-Production Phases 1-7 passed STATIC, COMPILE, PACKAGE, and deterministic-build checks.
-LOAD, RUNTIME, clean removal, clipping, and combined-mod behavior remain user-owned Phase 8 checks.
-
-BLAST RADIUS
+WHAT IT CHANGES
 This package replaces English onscreen and subtitle localization resources from the base game and Phantom Liberty.
 It cannot change audio, scripts, quests, gameplay records, saves, input bindings, world state, or network behavior.
 No runtime framework dependency is required.
@@ -204,7 +200,7 @@ See reports/installed-collision-audit.json for owners and paths. This is deliber
 UNINSTALL
 Removing both !ultimate archive files above restores the previous archive winners. No save migration or cache cleanup is designed.
 
-PHASE 8 TEST
+TEST IN GAME
 Launch with English text, then check main/settings menus, HUD/input glyphs, a cinematic subtitle, overhead dialogue, a quest objective, an item description, a shard/computer, and one Phantom Liberty scene.
 Pass = transformed text on each surface; no raw tags, missing lines, wrong numbers, broken glyphs, or unusable navigation.
 Then remove both archives and relaunch.
