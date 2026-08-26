@@ -413,3 +413,74 @@ Total:           3802 / 3802 matched
 ```
 
 If one entry, ID, field, or piece of text comes back different, the build stops. This is non-negotiable! I don't know if mismatched numbers of entries would cause anything, and I do not want to find out. You can try at your own risk.
+
+
+## 7. Pack the mod archives
+
+The rebuilt CR2W files keep their original depot paths:
+
+```text
+base\localization\en-us\...
+ep1\localization\en-us\...
+```
+
+I pack base game and Phantom Liberty separately.
+
+```powershell
+$Build = "$Project\build\full-b"
+
+New-Item -ItemType Directory -Force `
+  "$Build\archives\base-pack", `
+  "$Build\archives\ep1-pack" | Out-Null
+```
+
+Base game:
+
+```powershell
+& $WolvenKit pack `
+  "$Build\stage\base" `
+  -o "$Build\archives\base-pack" `
+  -v Detailed
+```
+
+Phantom Liberty:
+
+```powershell
+& $WolvenKit pack `
+  "$Build\stage\ep1" `
+  -o "$Build\archives\ep1-pack" `
+  -v Detailed
+```
+
+WolvenKit made:
+
+```text
+base.archive
+ep1.archive
+```
+
+My build script renamed them to:
+
+```text
+!ultimate-uwu-meowification-nyaa-base.archive
+!ultimate-uwu-meowification-nyaa-phantom-liberty.archive
+```
+
+The leading `!` gives them an early filename load order. This lets the full localization override win when another archive edits the same vanilla localization file.
+
+That also means a collision can hide another mod's edits to that file.
+
+Then I opened both finished archive indexes and checked every depot path:
+
+```text
+Base game:       3086 / 3086
+Phantom Liberty:  716 / 716
+```
+
+These are new mod archives. Cyberpunk's original `lang_en_text.archive` files are never touched and must never be touched under any circumstances.(I know I keep warning you about overwrite issue.)
+
+![WolvenKit pack help in my PowerShell console](assets/ps-wolvenkit-pack-help.png)
+
+CLI help from my PowerShell console; shortened so it fits.
+
+**Source:** [WolvenKit CLI — Pack](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#pack)
