@@ -484,3 +484,50 @@ These are new mod archives. Cyberpunk's original `lang_en_text.archive` files ar
 CLI help from my PowerShell console; shortened so it fits.
 
 **Source:** [WolvenKit CLI — Pack](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#pack)
+
+
+## 8. Test the damn thing
+Before touching the game, I ran the Python tests:
+
+```powershell
+& "$Project\.venv\Scripts\python.exe" -m pytest
+```
+
+Result:
+
+```powershell
+112 passed
+```
+
+The full build also passed:
+
+CR2W rebuild:        3802 / 3802
+JSON readback:       3802 / 3802
+Base archive paths:  3086 / 3086
+Phantom Liberty:      716 / 716
+
+I built everything twice from clean folders too. Both runs made identical JSON, CR2W files, archives, and final ZIP contents.
+
+Deterministic cat crime confirmed.
+
+### What automation cannot prove
+Python cannot launch Cyberpunk and look at the screen. That part needs a human with eyeballs.
+
+The in-game check covers:
+
+- main and settings menus
+- HUD and input icons
+- cinematic subtitles
+- overhead dialogue
+- quest objectives
+- item descriptions
+- shards and computers
+- one Phantom Liberty scene
+
+Pass means the text is transformed without:
+
+- raw markup
+- missing lines
+- changed numbers
+- broken input icons
+- unusable menus
