@@ -75,7 +75,7 @@ In my current game version, WolvenKit reported:
 lang_en_text.archive: Unbundled 3087/3087 entries.
 ```
 
-If yours is a wee bit different, it's ok. As long as it's not 40k entries which means that you just have yourself an entire archive.
+The exact count may change after game updates(I wrote this before Endgerunner 2). Check the archive name in the output: it must say `lang_en_text.archive`. If it names another archive, stop!!!!!! you got the wrong one.
 
 ### Extract the Phantom Liberty localization
 
@@ -139,7 +139,7 @@ The arguments used here are:
 - `-o`, `--outpath`: where WolvenKit writes the extracted resources
 - `-v`, `--verbosity`: how much information WolvenKit prints
 
-**Source:** [WolvenKit CLI command list](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#unbundle)
+**Source:** [WolvenKit CLI — Unbundle](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#unbundle)
 
 > **Note:** My screenshot shows WolvenKit's long-path warning. The extraction still completed, but a short project path or Windows long-path support is recommended.
 
@@ -202,7 +202,7 @@ After this test worked, I used the same process for all base-game and Phantom Li
 
 CLI help from my PowerShell console; shortened so it fits.
 
-**Source:** [WolvenKit CLI command list](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#convert)
+**Source:** [WolvenKit CLI — Convert](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#convert)
 
 
 
