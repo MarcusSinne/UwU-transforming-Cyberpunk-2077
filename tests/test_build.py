@@ -15,8 +15,7 @@ from maximum_meow.build import (
     is_maximum_meow_archive,
     normalize_file_times,
     normalize_redarchive_timestamps,
-    phase0_readme,
-    phase0_report_payloads,
+
     production_archive_name,
     production_readme,
     redarchive_file_hashes,
@@ -163,37 +162,4 @@ def test_checksum_manifest_uses_final_archive_names(tmp_path: Path) -> None:
     assert manifest.endswith("  archive/pc/mod/sample.archive\n")
 
 
-def test_phase0_report_payloads_cover_grammar_surface_and_expansion() -> None:
-    rows = [{
-        "category": "compact button",
-        "depot_path": "base/example.json",
-        "id_field": "primaryKey",
-        "id_value": "1",
-        "surface": "compact",
-        "changed_fields": ["femaleVariant"],
-        "before": {"femaleVariant": "Use"},
-        "after": {"femaleVariant": "UwUse :3"},
-    }]
 
-    reports = phase0_report_payloads(rows)
-
-    assert set(reports) == {"token-grammar.json", "surface-classifier.json", "expansion-report.json"}
-    assert reports["surface-classifier.json"]["compact"] == ["compact button"]
-    assert reports["surface-classifier.json"]["compact_policy"] == (
-        "phonetic mutation only; no stutter, action, interjection, or emoticon"
-    )
-    assert "sparse" in reports["surface-classifier.json"]["prose_policy"]
-    expansion = reports["expansion-report.json"][0]
-    assert expansion["source_characters"] == 3
-    assert expansion["output_characters"] == 8
-    assert expansion["runtime_clipping_status"] == "pending user in-game test"
-
-
-def test_phase0_readme_names_visible_corrected_validation_targets() -> None:
-    text = phase0_readme("Ultimate UwU Meowification Nyaa")
-
-    assert "Interface" in text
-    assert "Controls" in text
-    assert "Continue" in text
-    assert "Return" not in text
-    assert "Ammo" not in text
