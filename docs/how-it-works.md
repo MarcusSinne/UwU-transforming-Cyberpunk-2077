@@ -380,3 +380,36 @@ CLI help from my PowerShell console; shortened so it fits.
 
 **Source:** [WolvenKit CLI — Convert](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#convert)
 
+
+## 6. Check that WolvenKit did not eat anything
+
+A `CR2W` header only proves the rebuilt file looks like a game resource. It does not prove the text survived.
+
+So I serialized every rebuilt CR2W file back into JSON again.
+
+```text
+edited JSON
+    ↓ deserialize
+rebuilt CR2W
+    ↓ serialize again
+readback JSON
+```
+
+Then my Python script compared the `Data` section from the edited JSON with the readback JSON:
+
+```python
+if readback["Data"] != edited["Data"]:
+    raise SystemExit("semantic round-trip mismatch")
+```
+
+I compare `Data` because that contains the resource structure and localization entries. WolvenKit can change export information inside `Header`, so comparing the entire file would scream about harmless metadata.
+
+My final check:
+
+```text
+Base game:       3086 / 3086 matched
+Phantom Liberty:  716 / 716 matched
+Total:           3802 / 3802 matched
+```
+
+If one entry, ID, field, or piece of text comes back different, the build stops. This is non-negotiable! I don't know if mismatched numbers of entries would cause anything, and I do not want to find out. You can try at your own risk.
