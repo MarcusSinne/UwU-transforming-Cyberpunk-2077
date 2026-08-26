@@ -500,11 +500,12 @@ Result:
 ```
 
 The full build also passed:
-
+```text
 CR2W rebuild:        3802 / 3802
 JSON readback:       3802 / 3802
 Base archive paths:  3086 / 3086
 Phantom Liberty:      716 / 716
+```
 
 I also built it twice from clean folders. Both builds were identical.
 
