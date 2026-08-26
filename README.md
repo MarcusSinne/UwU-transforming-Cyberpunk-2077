@@ -3,6 +3,8 @@ A deterministic Python pipeline for UwU-transforming Cyberpunk 2077 localization
 
 ## How it works
 
+[How I made it](docs/how-it-works.md)
+
 ## What this repo contains
 
 - Transformation rules (Phonetic based)
