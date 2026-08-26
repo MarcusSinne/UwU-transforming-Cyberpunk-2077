@@ -268,4 +268,66 @@ That is the tiny version. The real script also checks the file type, protects ga
 No screenshot here. The readable JSON contains CDPR's actual game text, and I am not uploading that whole thing to my repo.
 
 
+## 4. Apply the UwU rules
+
+It is a pile of deterministic UwU kawaii cat boy Python rules. You can say I'm committing linguistic cutey homicide on purpose.
+
+The script checks where the text came from before touching it.
+
+### Menus and short UI text
+
+Menus need to stay readable while someone is being shot at.
+
+The script mutates every eligible word using simple phonetic rules:
+
+```text
+r or l  → w
+th      → d
+ove     → uv
+final s → z
+```
+
+### Dialogue and descriptions
+
+Long text gets lighter treatment. The script mutates around 40% of its words instead of attacking the whole sentence.
+
+It also crushes repeated `ww` so dialogue does not become:
+
+```text
+wwwwwwww
+```
+
+Long description or dialogue gets one ASCII emoticon. Short ones may get one, a cat noise, an action, or a single stutter. These are picked from fixed lists, not generated.
+
+### Same input, same cat crime
+
+The production seed is:
+
+```text
+game-of-the-nya-v1
+```
+
+The script combines that seed with the file path, entry ID, field name, and rule being used.
+
+```text
+same file + same ID + same field + same seed = same result
+```
+
+Run it again and it makes the same choices.
+
+### Do not eat the game formatting
+
+The script protects things like:
+
+```text
+<Input ...>
+<Rich ...>
+<Image ...>
+{placeholders}
+\n
+URLs
+numbers
+```
+
+If those any of those got touched, the game might start having seizure.
 
