@@ -205,6 +205,67 @@ CLI help from my PowerShell console; shortened so it fits.
 **Source:** [WolvenKit CLI — Convert](https://wiki.redmodding.org/wolvenkit/wolvenkit-cli/usage/command-list#convert)
 
 
+## 3. Find the actual text
+
+I opened the readable JSON and followed the mess until I found the entries:
+
+```text
+Data\RootChunk\root\Data\entries
+```
+
+Menu and onscreen entries look like this:
+
+```text
+$type
+primaryKey
+secondaryKey
+femaleVariant
+maleVariant
+```
+
+Subtitles and dialogue look like this:
+
+```text
+$type
+stringId
+femaleVariant
+maleVariant
+```
+
+The actual text lives in:
+
+```text
+femaleVariant
+maleVariant
+```
+
+Everything else is identity and structure.
+
+```text
+primaryKey
+secondaryKey
+stringId
+$type
+```
+
+Touching those IDs is how text becomes homeless and stops appearing in-game. So leave them tf alone.
+
+The basic Python loop is:
+
+```python
+entries = document["Data"]["RootChunk"]["root"]["Data"]["entries"]
+
+for entry in entries:
+    for field in ("femaleVariant", "maleVariant"):
+        text = entry[field]
+
+        if text:
+            entry[field] = transform_visible_text(text)
+```
+
+That is the tiny version. The real script also checks the file type, protects game formatting, and screams if it sees a structure it does not understand.
+
+No screenshot here. The readable JSON contains CDPR's actual game text, and I am not uploading that whole thing to my repo.
 
 
 
